@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,9 +14,10 @@ import java.io.Serializable;
 @Entity(name = "person")
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Person implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 5487318113224112349L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

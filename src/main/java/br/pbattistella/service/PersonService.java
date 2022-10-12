@@ -1,14 +1,14 @@
 package br.pbattistella.service;
 
-import br.pbattistella.model.Person;
+import br.pbattistella.data.vo.v1.PersonVO;
 
 import java.util.List;
 
 public interface PersonService {
 
-    public List<Person> findAll();
-    public Person findById(Long id);
-    public Person create(Person person);
-    public Person update(Long id, Person person);
+    public List<PersonVO> findAll();
+    public PersonVO findById(Long id);
+    public PersonVO create(PersonVO person);
+    public PersonVO update(Long id, PersonVO person);
     public void delete(Long id);
 }
