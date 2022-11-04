@@ -2,8 +2,10 @@ package br.pbattistella.service;
 
 
 import br.pbattistella.data.vo.v1.PersonVO;
+import br.pbattistella.data.vo.v2.PersonVOV2;
 import br.pbattistella.exceptions.ResourceNotFoundException;
 import br.pbattistella.mapper.DozerMapper;
+import br.pbattistella.mapper.custom.PersonMapper;
 import br.pbattistella.model.Person;
 import br.pbattistella.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class PersonServiceImpl implements PersonService{
 
     @Autowired
     PersonRepository personRepository;
+
+    @Autowired
+    PersonMapper personMapper;
 
     @Override
     public List<PersonVO> findAll() {
@@ -39,6 +44,14 @@ public class PersonServiceImpl implements PersonService{
         logger.info("Creating one person!");
         var entity = DozerMapper.parseObject(person, Person.class);
         var vo = DozerMapper.parseObject(personRepository.save(entity), PersonVO.class);
+        return vo;
+    }
+
+    @Override
+    public PersonVOV2 createV2(PersonVOV2 person) {
+        logger.info("Creating one person!");
+        var entity = personMapper.convertVOToEntity(person);
+        var vo = personMapper.convertEntityToVo(personRepository.save(entity));
         return vo;
     }
 
@@ -69,5 +82,7 @@ public class PersonServiceImpl implements PersonService{
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
         personRepository.delete(entity);
     }
+
+
 
 }

@@ -1,6 +1,7 @@
 package br.pbattistella.controller;
 
 import br.pbattistella.data.vo.v1.PersonVO;
+import br.pbattistella.data.vo.v2.PersonVOV2;
 import br.pbattistella.service.PersonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,6 +31,12 @@ public class PersonController {
                 produces = MediaType.APPLICATION_JSON_VALUE)
     public PersonVO create(@RequestBody PersonVO person){
         return personService.create(person);
+    }
+
+    @PostMapping(value = "/v2", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public PersonVOV2 createV2(@RequestBody PersonVOV2 person){
+        return personService.createV2(person);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
