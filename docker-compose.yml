@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    container_name: app_java_backend_curso
+    image: 'app_java_backend_curso'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/cursorest_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=PBattistella2024
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
