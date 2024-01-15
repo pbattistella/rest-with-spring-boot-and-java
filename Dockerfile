@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine3.17
+FROM openjdk:17-alpine
 
 ARG JAR_FILE=target/*.jar
 
